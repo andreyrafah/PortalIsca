@@ -13,19 +13,38 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Styles -->
+        <!--
+            Cores Corandini
+            Padrão          FF120F
+            Site:           E51C1F
+            Composta:       FF4700
+            Sombra:         540000
+            Iluminação:     F1F1F1
+            Complementar    01b351
+            
+        -->
         <style>
            body {
-                height:1080px;
                 overflow: hidden;
+                background: linear-gradient( to bottom right ,#F1F1F1 ,#E51C1F);
+                background-repeat: no-repeat;
+                height:680px;
             }
 
             .panel-corandini{
-                border-color: #E51C1F;
+                border-color: #FF4700;
+                box-shadow: 7px 7px #540000;
             }
             .panel-corandini .panel-heading{
-                background: linear-gradient( #E51C1F, #ff4242);
-                color: white;
+                background: #FF4700;
+                color: #fff;
                 
+            }
+
+            .btn-custon-1{
+                color: #fff;
+                background-color: #3f3db9;
+                border-color: #4cae4c;
             }
             @media screen and (min-width: 813px) {
                 .mobile {
@@ -56,8 +75,9 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-corandini">
-                            
-                                <div class="panel-heading text-center cor-corandini"><p>Olá <strong>{{$link->cliente_nome}}</strong> temos uma excelente proposta de Negociação do seu debito junto a {{ $link->carteira->nome }}, basta escolher um dos canais de atendimento abaixo</p></div> 
+                            <div class="panel-heading text-center cor-corandini">
+                                <p>Olá <strong>{{$link->cliente_nome}}</strong> temos uma excelente proposta de Negociação do seu debito junto a {{ $link->carteira->nome }}, basta escolher um dos canais de atendimento abaixo</p>
+                            </div> 
                             <div class="panel-body">
 
                                 <div class="row">
@@ -78,7 +98,7 @@
 
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2">
-                                    <a href="{{ url('portal/portalAutoNegociacao')}}/{{$link->id}}">
+                                    <a href="{{ url('portal/autoNegociacao')}}/{{$link->id}}">
                                             <div class="form-group">
                                                 <span class="btn btn-primary btn-block"> Quero Negociar sozinho</span>
                                             </div>
@@ -95,11 +115,20 @@
                                                 </span>
                                             </a>
                                         </div>
-                                        
                                     </div>
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="form-group">
+                                        <a href="{{ url('portal/chat')}}/{{$link->id}}">
+                                                <span class="btn btn-custon-1 btn-block">Quero Negociar pelo Chat</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mobile">
                                     <div class="col-md-8 col-md-offset-2">
                                         <div class="form-group">
                                             <a href="{{ url('portal/sms')}}/{{$link->id}}">
@@ -132,7 +161,13 @@
                                             </span>
                                         </div>
                                         
-                                        <div id="Mensagem" hidden>
+                                        <div id="Mensagem" 
+                                            @if(count($errors) > 0)
+                                                
+                                            @else
+                                                hidden
+                                            @endif
+                                            >
                                             <form method="post" action="{{ url('portal/c2c')}}/{{$link->id}}">
                                                 <input value="{{    csrf_token()    }}" name="_token" type="hidden">
                                                 <div class="input-group">
@@ -150,6 +185,21 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                @if(count($errors) > 0)
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                        <li>{{  $error   }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -188,7 +238,7 @@
 
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2">
-                                    <a href="{{ url('portal/portalAutoNegociacao')}}">
+                                        <a href="{{ url('portal/autoNegociacao')}}">
                                             <div class="form-group">
                                                 <span class="btn btn-primary btn-block"> Quero Negociar sozinho</span>
                                             </div>

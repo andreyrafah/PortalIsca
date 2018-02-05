@@ -14,11 +14,19 @@
 
         <!-- Styles -->
         <style>
-           body {background: linear-gradient( #E51C1F, #ff4242);
+           body {
                 height:1080px;
                 overflow: hidden;
             }
 
+            .panel-corandini{
+                border-color: #E51C1F;
+            }
+            .panel-corandini .panel-heading{
+                background: linear-gradient( #E51C1F, #ff4242);
+                color: white;
+                
+            }
             @media screen and (min-width: 813px) {
                 .mobile {
                     display:none
@@ -40,40 +48,14 @@
                 </div>
             @endif
         </div>-->
-
-
-        
-        <div class="container-fluid">
-            <br>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-primary">
-                        <div class="panel-body">
-                            <div class="col-md-8 col-md-2 col-xs-12">
-                                @if($click->so == "Mac")
-                                    <a href="SMS:{{$numero}}&body=Oi tenho interese em negociar meu debito">
-                                        <span class="btn btn-success btn-block btn-lg">
-                                            Enviar SMS
-                                        </span>
-                                    </a>
-                                @else
-                                    <a href="SMS:{{$numero}}?body=Oi tenho interese em negociar meu debito">
-                                        <span class="btn btn-success btn-block btn-lg">
-                                            Enviar SMS
-                                        </span>
-                                    </a>
-                                @endif
-                                
-                            </div>
-
-                            
-                            
-                        </div>
-                    </div>
-
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="alert alert-success">
+                    Em poucos segundo você recebera uma ligação do numero <strong>41 3514-XXXX </strong>  
                 </div>
             </div>
-            
         </div>
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

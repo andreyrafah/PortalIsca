@@ -2,12 +2,14 @@
 
 Route::get('/{url}','LinkController@BuscoURL');
 
-Route::get('/',     'LinkController@SemURL');
+Route::get('/','LinkController@SemURL');
+Route::get('/pagina-nao-encontrada', 'PagesController@error')->name('404');
 
 
 Route::prefix('portal')->group(function () {
-    Route::get('/{id}','PortalController@portalAutoNegociacao');
-    Route::get('portalAutoNegociacao/{id}','PortalController@portalAutoNegociacao');
+    //Route::get('/{id}','PortalController@autoNegociacao');
+    Route::get('chat/{id}','PortalController@chat');
+    Route::get('autoNegociacao/{id}','PortalController@autoNegociacao');
     Route::get('telefone/{id}','PortalController@telefone');
     Route::get('email/{id}','PortalController@email');
     Route::get('sms/{id}','PortalController@sms');

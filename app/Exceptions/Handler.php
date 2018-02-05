@@ -48,6 +48,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (!config('app.debug') && in_array($e->getCode(), [404, 500])) {
+            return redirect()->route('404');
+        }
         return parent::render($request, $exception);
     }
 }
