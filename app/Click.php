@@ -174,7 +174,7 @@ class click extends Model
 			return false;
 		}
 
-		$r = $this->Q("Action: KSendSMS\r\nDevice:$canal\r\nDestination:$numero\r\nEncoding:16\r\nMessage:$mensagem\r\nConfirmation: true\r\n\r\n");
+		$r = $this->Q("Action: KSendSMS\r\nDevice:$canal\r\nDestination:$numero\r\nLinefeed: true\r\nEncoding:16\r\nMessage:$mensagem\r\nConfirmation: true\r\n\r\n");
 		$r = explode("\r\n", $r);
 		for ($i=0; $i < count($r); $i++) { 
 			$rr = explode(":", $r[$i]);

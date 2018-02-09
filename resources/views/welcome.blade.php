@@ -26,17 +26,16 @@
         <style>
            body {
                 overflow: hidden;
-                background: linear-gradient( to bottom right ,#F1F1F1 ,#E51C1F);
+                background: linear-gradient( to bottom right ,#FF120F ,#540000);
                 background-repeat: no-repeat;
                 height:680px;
             }
 
             .panel-corandini{
-                border-color: #FF4700;
-                box-shadow: 7px 7px #540000;
+                border:0;
             }
             .panel-corandini .panel-heading{
-                background: #FF4700;
+                background: #540000;
                 color: #fff;
                 
             }

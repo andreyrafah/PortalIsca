@@ -1,4 +1,9 @@
 <?php
+Route::prefix('chat')->group(function () {
+    Route::get('',"ChatController@index");
+    Route::get('SMSList',"ChatController@store");
+    Route::get('smsSends','ChatController@smsSends');
+});
 
 Route::get('/{url}','LinkController@BuscoURL');
 
